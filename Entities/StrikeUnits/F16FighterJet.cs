@@ -1,6 +1,6 @@
 using FirstStrike.Interfaces;
 
-namespace FirstStrike.Entities
+namespace FirstStrike.Entities.StrikeUnits
 {
     public class F16FighterJet : IStrikeUnit
     {
