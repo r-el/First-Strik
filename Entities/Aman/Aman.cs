@@ -8,6 +8,11 @@ namespace FirstStrike.Entities.Aman
 {
     internal class Aman
     {
+        public List<IntelligenceMessages> IntelligenceMessages;
+        public Aman(List<IntelligenceMessages> intelligenceMessages)
+        {
+            IntelligenceMessages = intelligenceMessages;
+        }
 
     }
 }
