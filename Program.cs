@@ -10,6 +10,9 @@ using FirstStrike.Entities.StrikeUnits;
 F16FighterJet f16 = new F16FighterJet();
 Console.WriteLine(f16);
 
+Hermes460Drone hermes = new Hermes460Drone();
+Console.WriteLine(hermes);
+
 // ---------- בדיקת אנשים ---------- //
 Terrorist moohamad = new Terrorist("moohamad", 3,[ "coll", "sakin"],true);
 Console.WriteLine(moohamad);
