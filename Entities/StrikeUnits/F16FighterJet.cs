@@ -2,13 +2,13 @@ using FirstStrike.Interfaces;
 
 namespace FirstStrike.Entities.StrikeUnits
 {
-    public class F16FighterJet : IStrikeUnit
+    public class F16FighterJet : StrikeUnitBase
     {
-        public string Name { get; } = "F16 Fighter Jet";
-        public int Ammo { get; private set; } = 8;
-        public double Fuel { get; private set; } = 100;
-        public string[] EffectiveAgainst { get; } = { "buildings" };
-
+        public override string Name { get; } = "F16 Fighter Jet";
+        public override int Ammo { get; } = 8;
+        public override double Fuel { get; } = 100;
+        public override string[] EffectiveAgainst { get; } = { "buildings" };
+        
         // TODO: Complete rest..
     }
 }
