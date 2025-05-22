@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace FirstStrike
 {
-    internal class Terrorist : Soldier
+    public class Terrorist : Soldier
     {
         // TODO: Change string type to weapon type
         protected List<string> Weapons { get; set; }
