@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using FirstStrike;
 using FirstStrike.Entities;
+using FirstStrike.Entities.Aman;
 using FirstStrike.Entities.StrikeUnits;
 using FirstStrike.Entities.TerrorOrganizations;
 
@@ -45,3 +46,14 @@ hamas.Terrorists.Add(new Terrorist("אחמד", 1, new List<string> { "רובה",
 hamas.Terrorists.Add(new Terrorist("מוחמד", 2, new List<string> { "אקדח" }));
 
 Console.WriteLine(hamas);
+
+// ---------- הודעות מודיעיניות ---------- //
+Location locationMoohamad = new Location("home");
+
+IntelligenceMessages messag1 = new IntelligenceMessages(moohamad, locationMoohamad, DateTime.Now
+);
+Console.WriteLine(messag1);
+
+Aman aman = new();
+aman.AddIntelligenceMessages(messag1);
+Console.WriteLine(aman);
