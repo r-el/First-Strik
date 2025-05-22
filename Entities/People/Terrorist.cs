@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FirstStrike.interfaces;
 
 
 namespace FirstStrike
 {
     public class Terrorist : Soldier
     {
-        // TODO: Change string type to weapon type
-        protected List<string> Weapons { get; set; }
+        protected List<IWeapons> Weapons { get; set; }
 
-        public Terrorist(string name, int rank,List<string> weapons, bool isAlive = true) : base(name, rank, isAlive)
+        public Terrorist(string name, int rank,List<IWeapons> weapons, bool isAlive = true) : base(name, rank, isAlive)
         {
             Weapons = weapons;
         }
