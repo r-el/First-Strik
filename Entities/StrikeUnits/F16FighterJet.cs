@@ -9,6 +9,11 @@ namespace FirstStrike.Entities.StrikeUnits
         public double Fuel { get; private set; } = 100;
         public string[] EffectiveAgainst { get; } = { "buildings" };
 
+        public override string ToString()
+        {
+            return $"{Name} | Ammo: {Ammo} | Fuel: {Fuel} | Effective Against: {string.Join(", ", EffectiveAgainst)}";
+        }
+        
         // TODO: Complete rest..
     }
 }
