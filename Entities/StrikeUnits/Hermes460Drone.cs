@@ -1,15 +1,15 @@
-using FirstStrike.Interfaces;
+using FirstStrike.Entities.StrikeUnits;
 
-public class Hermes460Drone : IStrikeUnit
+namespace FirstStrike.Entities.StrikeUnits
 {
-    public string Name { get; } = "Hermes 460 Drone (Zik)";
-    public int Ammo { get; private set; } = 3;
-    public double Fuel { get; private set; } = 100;
-    public string[] EffectiveAgainst { get; } = ["People", "vehicles"];
-
-    // TODO: Complete rest..
-    public override string ToString()
+    public class Hermes460Drone : StrikeUnitBase
     {
-        return $"{Name} | Ammo: {Ammo} | Fuel: {Fuel} | Effective Against: {string.Join(", ", EffectiveAgainst)}";
+        public override string Name { get; } = "Hermes 460 Drone (Zik)";
+        public override int Ammo { get; } = 3;
+        public override double Fuel { get; } = 100;
+        public override string[] EffectiveAgainst { get; } = ["People", "vehicles"];
+
+        // TODO: Complete rest..
+
     }
 }

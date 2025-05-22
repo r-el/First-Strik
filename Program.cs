@@ -7,11 +7,17 @@ using FirstStrike;
 using FirstStrike.Entities.StrikeUnits;
 
 // ---------- בדיקת יחידות תקיפה ---------- //
-F16FighterJet f16 = new F16FighterJet();
+F16FighterJet f16 = new();
 Console.WriteLine(f16);
 
-Hermes460Drone hermes = new Hermes460Drone();
+Hermes460Drone hermes = new();
 Console.WriteLine(hermes);
+
+M109Artillery m109 = new();
+Console.WriteLine(m109);
+
+Console.WriteLine("----- -----");
+
 
 // ---------- בדיקת אנשים ---------- //
 Terrorist moohamad = new Terrorist("moohamad", 3,[ "coll", "sakin"],true);
