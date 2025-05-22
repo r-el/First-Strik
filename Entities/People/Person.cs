@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FirstStrike
 {
-    internal class Person
+    public class Person
     {
         protected string Name { get; set; }
         protected bool IsAlive { get; set; }
