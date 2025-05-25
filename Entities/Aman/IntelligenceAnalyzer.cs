@@ -14,9 +14,26 @@ namespace FirstStrike.Entities.Aman
         {
             if (!terrorist.Weapons.Any())
                 return terrorist.Rank;
-            
+
             int totalSeverity = terrorist.Weapons.Sum(w => w.SeverityLevel);
             return totalSeverity * terrorist.Rank;
+        }
+
+        public static Terrorist GetMostDangerousTerrorist(List<Terrorist> terrorisits)
+        {
+            Terrorist terrorist= terrorisits[0];
+            int TerroristSeverity = GetTerroristSeverityLevel(terrorist);
+            for (int i = 1; i < terrorisits.Count; i++)
+            {
+                int j = GetTerroristSeverityLevel(terrorisits[i]);
+                if (j > TerroristSeverity)
+                {
+                    TerroristSeverity = j;
+                    terrorist = terrorisits[i];
+                }
+            }
+
+            return terrorist;
         }
 
 
