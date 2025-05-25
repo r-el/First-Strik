@@ -11,17 +11,20 @@ namespace FirstStrike.Entities.Aman
         protected Terrorist NameTerrorist { get; set; }
         protected Location Location { get; set; }
         protected DateTime TimeStamp { get; set; }
-    
-    public  IntelligenceMessages(Terrorist nameTerrorist, Location location, DateTime timestamp)
+
+        protected int EverityLevel;
+
+        public  IntelligenceMessages(Terrorist nameTerrorist, Location location, DateTime timestamp)
         {
             NameTerrorist = nameTerrorist;
             Location = location;
             TimeStamp = timestamp;
+            EverityLevel = IntelligenceAnalyzer.GetTerroristSeverityLevel(NameTerrorist);
      }
         public override string ToString()
         {
             
-            return $"NameTerrorist: {NameTerrorist}, {Location} , TimeStamp: {TimeStamp} ";
+            return $"NameTerrorist: {NameTerrorist}, {Location} , TimeStamp: {TimeStamp}, TerroristSeverityLevel: {EverityLevel} ";
         }
     }
 }
