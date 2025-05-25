@@ -10,7 +10,7 @@ namespace FirstStrike
 {
     public class Soldier : Person
     {
-        protected int Rank { get; set; }
+        public int Rank { get; set; }
         public Soldier(string name, int rank, bool isAlive = true) : base(name, isAlive)
         {
             Rank = rank;
