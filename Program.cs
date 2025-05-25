@@ -8,6 +8,8 @@ using FirstStrike.Entities;
 using FirstStrike.Entities.Aman;
 using FirstStrike.Entities.StrikeUnits;
 using FirstStrike.Entities.TerrorOrganizations;
+using FirstStrike.Entities.WeaponsHamas;
+using FirstStrike.interfaces;
 
 // ---------- יחידות תקיפה ---------- //
 Console.WriteLine("===== יחידות תקיפה =====");
@@ -21,8 +23,8 @@ Console.WriteLine(m109);
 
 // ---------- אנשים ---------- //
 Console.WriteLine("===== טרוריסטים =====");
-Terrorist moohamad = new Terrorist("moohamad", 3,[ "coll", "sakin"],true);
-Console.WriteLine(moohamad);
+//Terrorist moohamad = new Terrorist("moohamad", 3,[ "coll", "sakin"],true);
+//Console.WriteLine(moohamad);
 
 // ---------- IDF ---------- //
 IDF idf = IDF.Instance;
@@ -42,13 +44,15 @@ foreach (var unit in idf.StrikeUnits)
 
 // ---------- דוגמה לשימוש ב-Hamas (Singleton) ---------- //
 Hamas hamas = Hamas.Instance;
-hamas.Terrorists.Add(new Terrorist("אחמד", 1, new List<string> { "רובה", "סכין" }));
-hamas.Terrorists.Add(new Terrorist("מוחמד", 2, new List<string> { "אקדח" }));
+//hamas.Terrorists.Add(new Terrorist("אחמד", 1, new List<string> { "רובה", "סכין" }));
+//hamas.Terrorists.Add(new Terrorist("מוחמד", 2, new List<string> { "אקדח" }));
 
 Console.WriteLine(hamas);
 
 // ---------- הודעות מודיעיניות ---------- //
 Location locationMoohamad = new Location("home");
+List<IWeapons> listweapons = [new AK47()];
+Terrorist moohamad = new("moohamad",3, listweapons);
 
 IntelligenceMessages messag1 = new IntelligenceMessages(moohamad, locationMoohamad, DateTime.Now
 );
@@ -57,3 +61,7 @@ Console.WriteLine(messag1);
 Aman aman = new();
 aman.AddIntelligenceMessages(messag1);
 Console.WriteLine(aman);
+
+// ---------- סוגי נשק חמאס ---------- //
+Knife k = new();
+Console.WriteLine(k);
