@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FirstStrike.Entities.Aman
 {
-    internal class IntelligenceMessages
+    public class IntelligenceMessages
     {
         protected Terrorist NameTerrorist { get; set; }
         protected Location Location { get; set; }
