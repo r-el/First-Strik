@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Text;
 using FirstStrike.Interfaces;
 
 namespace FirstStrike.Entities
@@ -16,5 +17,18 @@ namespace FirstStrike.Entities
         public List<IStrikeUnit> StrikeUnits { get; set; } = [];
         // מניעת יצירת מופעים נוספים
         private IDF() { /* צה"ל יש רק אחד */ }
+
+        public override string ToString()
+        {
+            StringBuilder sb = new();
+            sb.AppendLine($"צה\"ל | הוקם: {Established:dd/MM/yyyy} | מפקד: {Commander}");
+            sb.AppendLine("יחידות תקיפה:");
+            if (StrikeUnits.Count == 0)
+                sb.AppendLine("(אין יחידות תקיפה)");
+            else
+                foreach (IStrikeUnit unit in StrikeUnits)
+                    sb.AppendLine("- " + unit);
+            return sb.ToString();
+        }
     }
 }

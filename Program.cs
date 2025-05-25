@@ -35,12 +35,8 @@ idf.StrikeUnits.Add(f16);
 idf.StrikeUnits.Add(hermes);
 idf.StrikeUnits.Add(m109);
 
-Console.WriteLine("===== צה\"ל =====");
-Console.WriteLine($"הוקם: {idf.Established:dd/MM/yyyy}");
-Console.WriteLine($"מפקד: {idf.Commander}");
-Console.WriteLine("יחידות תקיפה:");
-foreach (var unit in idf.StrikeUnits)
-    Console.WriteLine("- " + unit);
+Console.WriteLine("===== צה\"ל (ToString) =====");
+Console.WriteLine(idf);
 
 // ---------- דוגמה לשימוש ב-Hamas (Singleton) ---------- //
 Hamas hamas = Hamas.Instance;
