@@ -65,3 +65,6 @@ Console.WriteLine(aman);
 // ---------- סוגי נשק חמאס ---------- //
 Knife k = new();
 Console.WriteLine(k);
+
+// ---------- הפעלת תפריט מפקד ---------- //
+// CommanderConsole.Run();
