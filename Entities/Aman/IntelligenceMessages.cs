@@ -7,7 +7,7 @@ using FirstStrike.Utilities;
 
 namespace FirstStrike.Entities.Aman
 {
-    internal class IntelligenceMessages
+    public class IntelligenceMessages
     {
         public Terrorist NameTerrorist { get; set; }
         protected Location Location { get; set; }

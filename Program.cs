@@ -36,12 +36,8 @@ idf.StrikeUnits.Add(f16);
 idf.StrikeUnits.Add(hermes);
 idf.StrikeUnits.Add(m109);
 
-Console.WriteLine("===== צה\"ל =====");
-Console.WriteLine($"הוקם: {idf.Established:dd/MM/yyyy}");
-Console.WriteLine($"מפקד: {idf.Commander}");
-Console.WriteLine("יחידות תקיפה:");
-foreach (var unit in idf.StrikeUnits)
-    Console.WriteLine("- " + unit);
+Console.WriteLine("===== צה\"ל (ToString) =====");
+Console.WriteLine(idf);
 
 // ---------- דוגמה לשימוש ב-Hamas (Singleton) ---------- //
 Hamas hamas = Hamas.Instance;
@@ -100,6 +96,7 @@ aman.AddIntelligenceMessages(msg2);
 aman.AddIntelligenceMessages(msg3);
 aman.AddIntelligenceMessages(msg4);
 
+
 // ---------- הדפסת כל ההודעות ----------
 Console.WriteLine(msg1);
 Console.WriteLine(msg2);
@@ -120,3 +117,11 @@ IntelligenceMessages MostFeaturedTerrorist = IntelligenceAnalyzer.GetMostFeature
     new List<IntelligenceMessages> { msg1,msg2, msg2, msg3 }
 );
 Console.WriteLine($"Most Featured Terrorist: {MostFeaturedTerrorist.NameTerrorist}");
+
+// ---------- סוגי נשק חמאס ---------- //
+Knife k = new();
+Console.WriteLine(k);
+
+// ---------- הפעלת תפריט מפקד ---------- //
+// CommanderConsole.Run();
+
