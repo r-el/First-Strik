@@ -8,8 +8,8 @@ namespace FirstStrike
 {
     public class Person
     {
-        protected string Name { get; set; }
-        protected bool IsAlive { get; set; }
+        public string Name { get; set; }
+        public bool IsAlive { get; set; }
 
             public Person(string name, bool isAlive = true)
             {
