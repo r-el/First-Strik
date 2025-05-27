@@ -10,6 +10,7 @@ using FirstStrike.Entities.StrikeUnits;
 using FirstStrike.Entities.TerrorOrganizations;
 using FirstStrike.Entities.WeaponsHamas;
 using FirstStrike.interfaces;
+using FirstStrike.Utilities;
 
 // ---------- יחידות תקיפה ---------- //
 Console.WriteLine("===== יחידות תקיפה =====");
@@ -114,3 +115,8 @@ int severity = IntelligenceAnalyzer.GetTerroristSeverityLevel(mostDangerous);
 
 Console.WriteLine($"Most Dangerous Terrorist: {mostDangerous.Name}");
 Console.WriteLine($"Severity Level: {severity}");
+
+IntelligenceMessages MostFeaturedTerrorist = IntelligenceAnalyzer.GetMostFeaturedTerrorist(
+    new List<IntelligenceMessages> { msg1,msg2, msg2, msg3 }
+);
+Console.WriteLine($"Most Featured Terrorist: {MostFeaturedTerrorist.NameTerrorist}");

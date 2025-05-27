@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FirstStrike.Utilities;
 
 namespace FirstStrike.Entities.Aman
 {
     internal class IntelligenceMessages
     {
-        protected Terrorist NameTerrorist { get; set; }
+        public Terrorist NameTerrorist { get; set; }
         protected Location Location { get; set; }
         protected DateTime TimeStamp { get; set; }
 

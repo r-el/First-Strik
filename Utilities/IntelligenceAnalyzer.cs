@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FirstStrike.Entities.Aman;
 
-namespace FirstStrike.Entities.Aman
+namespace FirstStrike.Utilities
 {
     internal class IntelligenceAnalyzer
     {
@@ -35,6 +36,43 @@ namespace FirstStrike.Entities.Aman
 
             return terrorist;
         }
+  
+        public static IntelligenceMessages GetMostFeaturedTerrorist(List<IntelligenceMessages> intelligenceMessages)
+        {
+            Dictionary<Terrorist, int> countDict = new Dictionary<Terrorist, int>();
+
+            
+            foreach (var im in intelligenceMessages)
+            {
+                var terrorist = im.NameTerrorist;
+
+                if (countDict.ContainsKey(terrorist))
+                    countDict[terrorist]++;
+                else
+                    countDict[terrorist] = 1;
+            }
+
+            Terrorist mostCommon = null;
+            int maxCount = 0;
+
+            foreach (var pair in countDict)
+            {
+                if (pair.Value > maxCount)
+                {
+                    maxCount = pair.Value;
+                    mostCommon = pair.Key;
+                }
+            }
+            foreach (var msg in intelligenceMessages)
+            {
+                if (msg.NameTerrorist == mostCommon)
+                    return msg;
+            }
+            return null;
+
+            //return intelligenceMessages.FirstOrDefault(msg => msg.NameTerrorist == mostCommon);
+        }
+
 
 
     }
