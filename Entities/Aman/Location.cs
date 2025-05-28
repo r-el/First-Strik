@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FirstStrike.Entities.Aman
 {
-    internal class Location
+    public class Location
     {
         // Dictionary<string, string> Terroristlocation = new Dictionary<string, string> { };
         //public  Location(Dictionary<string, string> terroristlocation)
