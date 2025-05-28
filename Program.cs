@@ -10,118 +10,82 @@ using FirstStrike.Entities.StrikeUnits;
 using FirstStrike.Entities.TerrorOrganizations;
 using FirstStrike.Entities.WeaponsHamas;
 using FirstStrike.interfaces;
+using FirstStrike.Interfaces;
 using FirstStrike.Utilities;
 
-// ---------- יחידות תקיפה ---------- //
-Console.WriteLine("===== יחידות תקיפה =====");
-F16FighterJet f16 = new();
-Hermes460Drone hermes = new();
-M109Artillery m109 = new();
+// 🇮🇱 IDF Operation - First Strike 🇮🇱
+Console.WriteLine("🇮🇱 IDF Operation - First Strike 🇮🇱");
+Console.WriteLine("=====================================\n");
 
-Console.WriteLine(f16);
-Console.WriteLine(hermes);
-Console.WriteLine(m109);
+// Initialize and run simulation
+var (idf, hamas, aman) = InitializeEntities();
+aman = InitializeRandomData(idf, hamas, aman);
+DisplayFinalResults(idf, hamas, aman);
 
-// ---------- אנשים ---------- //
-Console.WriteLine("===== טרוריסטים =====");
-//Terrorist moohamad = new Terrorist("moohamad", 3,[ "coll", "sakin"],true);
-//Console.WriteLine(moohamad);
+// ==================== METHODS ====================
 
-// ---------- IDF ---------- //
-IDF idf = IDF.Instance;
-idf.Commander = "אייל זמיר";
+/// <summary>
+/// Initialize core military entities (IDF, Hamas, Aman)
+/// </summary>
+static (IDF idf, Hamas hamas, Aman aman) InitializeEntities()
+{
+    IDF idf = IDF.Instance;
+    idf.Commander = "אייל זמיר";
 
-// הוספת יחידות תקיפה
-idf.StrikeUnits.Add(f16);
-idf.StrikeUnits.Add(hermes);
-idf.StrikeUnits.Add(m109);
+    Hamas hamas = Hamas.Instance;
+    Aman aman = new();
 
-Console.WriteLine("===== צה\"ל (ToString) =====");
-Console.WriteLine(idf);
+    return (idf, hamas, aman);
+}
 
-// ---------- דוגמה לשימוש ב-Hamas (Singleton) ---------- //
-Hamas hamas = Hamas.Instance;
-//hamas.Terrorists.Add(new Terrorist("אחמד", 1, new List<string> { "רובה", "סכין" }));
-//hamas.Terrorists.Add(new Terrorist("מוחמד", 2, new List<string> { "אקדח" }));
+/// <summary>
+/// Initialize all entities with random generated data
+/// </summary>
+static Aman InitializeRandomData(IDF idf, Hamas hamas, Aman aman)
+{
+    Console.WriteLine("===== Initializing System Data =====\n");
 
-Console.WriteLine(hamas);
+    // Generate random terrorists
+    List<Terrorist> terrorists = DataInitializer.GenerateRandomTerrorists(8);
+    hamas.Terrorists.Clear();
+    hamas.Terrorists.AddRange(terrorists);
 
-// ---------- הודעות מודיעיניות ---------- //
-//Location locationMoohamad = new Location("home");
-//List<IWeapons> listweapons = [new AK47()];
-//Terrorist moohamad = new("moohamad",3, listweapons);
+    // Initialize IDF strike units
+    List<IStrikeUnit> strikeUnits = DataInitializer.InitIDFStrikeUnits();
+    idf.StrikeUnits.Clear();
+    idf.StrikeUnits.AddRange(strikeUnits.Cast<IStrikeUnit>());
 
-//IntelligenceMessages messag1 = new IntelligenceMessages(moohamad, locationMoohamad, DateTime.Now
-//);
-//Console.WriteLine(messag1);
+    // Generate intelligence messages
+    Aman newAman = new(); // Create fresh Aman instance
+    List<IntelligenceMessages> intelMessages = DataInitializer.GenerateRandomIntelligenceMessages(terrorists, 15);
+    foreach (IntelligenceMessages msg in intelMessages)
+        newAman.AddIntelligenceMessages(msg);
 
-//Aman aman = new();
-//aman.AddIntelligenceMessages(messag1);
-//Console.WriteLine(aman);
+    Console.WriteLine("✅ System data initialized successfully!\n");
+    return newAman;
+}
 
-//// ---------- סוגי נשק חמאס ---------- //
-//Knife k = new();
-//Console.WriteLine(k);
-//int _int = IntelligenceAnalyzer.GetTerroristSeverityLevel(moohamad);
+/// <summary>
+/// Display concise system results
+/// </summary>
+static void DisplayFinalResults(IDF idf, Hamas hamas, Aman aman)
+{
+    Console.WriteLine("===== System Status =====\n");
+    
+    // Show brief Hamas summary
+    Console.WriteLine($"📊 Hamas: {hamas.Terrorists.Count} terrorists detected");
+    Console.WriteLine($"🎯 Intelligence: {aman.ListIntelligence.Count} reports collected\n");
+    
+    // Show detailed intelligence summary
+    DisplayAman(aman);
+}
 
-//Console.WriteLine($"The Terrorist SeverityLevel is: {_int} ");
-// ---------- יצירת מיקומים ----------
-Location location1 = new("Tunnel");
-Location location2 = new("Hideout");
-Location location3 = new("Forest");
-Location location4 = new("Border");
-
-// ---------- יצירת נשקים ----------
-List<IWeapons> weapons1 = new() { new AK47(), new Knife() };           // רמת חומרה בינונית
-List<IWeapons> weapons2 = new() { new Gun() };                         // רמת חומרה גבוהה
-List<IWeapons> weapons3 = new() { new Knife(), new M16() };    // חומרה מעורבת
-List<IWeapons> weapons4 = new() { new M16(), new AK47() };     // חומרה גבוהה
-
-// ---------- יצירת מחבלים ----------
-Terrorist terrorist1 = new("Abu Khaled", 2, weapons1);  // דרגה נמוכה, נשק בינוני
-Terrorist terrorist2 = new("Ziad", 4, weapons2);        // דרגה גבוהה, נשק בודד חזק
-Terrorist terrorist3 = new("Yousef", 3, weapons3);      // דרגת ביניים, שילוב נשקים
-Terrorist terrorist4 = new("Moohamad", 5, weapons4);    // דרגה גבוהה, שני כלי נשק מסוכנים
-
-// ---------- יצירת מסרי מודיעין ----------
-IntelligenceMessages msg1 = new(terrorist1, location1, DateTime.Now);
-IntelligenceMessages msg2 = new(terrorist2, location2, DateTime.Now);
-IntelligenceMessages msg3 = new(terrorist3, location3, DateTime.Now);
-IntelligenceMessages msg4 = new(terrorist4, location4, DateTime.Now);
-
-// ---------- הכנסת המידע ליחידת אמ"ן ----------
-Aman aman = new();
-aman.AddIntelligenceMessages(msg1);
-aman.AddIntelligenceMessages(msg2);
-aman.AddIntelligenceMessages(msg3);
-aman.AddIntelligenceMessages(msg4);
-
-
-// ---------- הדפסת כל ההודעות ----------
-Console.WriteLine(msg1);
-Console.WriteLine(msg2);
-Console.WriteLine(msg3);
-Console.WriteLine(msg4);
-
-// ---------- הפעלת הניתוח ----------
-Terrorist mostDangerous = IntelligenceAnalyzer.GetMostDangerousTerrorist(
-    new List<Terrorist> { terrorist1, terrorist2, terrorist3, terrorist4 }
-);
-
-int severity = IntelligenceAnalyzer.GetTerroristSeverityLevel(mostDangerous);
-
-Console.WriteLine($"Most Dangerous Terrorist: {mostDangerous.Name}");
-Console.WriteLine($"Severity Level: {severity}");
-
-IntelligenceMessages MostFeaturedTerrorist = IntelligenceAnalyzer.GetMostFeaturedTerrorist(
-    new List<IntelligenceMessages> { msg1,msg2, msg2, msg3 }
-);
-Console.WriteLine($"Most Featured Terrorist: {MostFeaturedTerrorist.NameTerrorist}");
-
-// ---------- סוגי נשק חמאס ---------- //
-Knife k = new();
-Console.WriteLine(k);
-
-// ---------- הפעלת תפריט מפקד ---------- //
-// CommanderConsole.Run();
-
+/// <summary>
+/// Display Aman summary (limited to 5 reports)
+/// </summary>
+static void DisplayAman(Aman aman)
+{
+    Console.WriteLine("===== אמ\"ן Intelligence Summary =====");
+    Console.WriteLine(aman);
+    Console.WriteLine();
+}
